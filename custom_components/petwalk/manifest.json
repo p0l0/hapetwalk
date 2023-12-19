@@ -1,8 +1,9 @@
 {
   "domain": "petwalk",
   "name": "PetWALK",
-  "version": "1.0.0",
-  "codeowners": ["@p0l0"],
+  "codeowners": [
+    "@p0l0"
+  ],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/p0l0/hapetwalk",
@@ -14,5 +15,6 @@
     "pypetwalk==1.0.0"
   ],
   "ssdp": [],
+  "version": "1.0.0",
   "zeroconf": []
 }
