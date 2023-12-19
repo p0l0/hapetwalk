@@ -45,22 +45,22 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         await api.get_aws_update_info()
     except TimeoutError as err:
         _LOGGER.warning(err)
-        raise CannotConnectTimeout
+        raise CannotConnectTimeout from err
     except (IndexError, KeyError) as err:
         _LOGGER.warning(err)
-        raise CannotConnect
+        raise CannotConnect from err
     except ConnectionRefusedError as err:
         _LOGGER.warning(err)
-        raise CannotConnect
+        raise CannotConnect from err
     except PyPetWALKClientAWSAuthenticationError as err:
         _LOGGER.warning(err)
-        raise InvalidAuth
+        raise InvalidAuth from err
 
     # Return info that you want to store in the config entry.
     return {"title": device_name}
 
 
-class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):  # type: ignore[misc,call-arg] # noqa: E501
     """Handle a config flow for PetWALK."""
 
     VERSION = 1
@@ -90,13 +90,13 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
 
-class CannotConnect(HomeAssistantError):
+class CannotConnect(HomeAssistantError):  # type: ignore[misc]
     """Error to indicate we cannot connect."""
 
 
-class CannotConnectTimeout(HomeAssistantError):
+class CannotConnectTimeout(HomeAssistantError):  # type: ignore[misc]
     """Error to indicate we cannot connect due to timeout."""
 
 
-class InvalidAuth(HomeAssistantError):
+class InvalidAuth(HomeAssistantError):  # type: ignore[misc]
     """Error to indicate there is invalid auth."""

@@ -2,9 +2,10 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timedelta
+from datetime import timedelta
 import logging
 from typing import Final
+import uuid
 
 from homeassistant import config_entries
 from homeassistant.components.device_tracker import (
@@ -31,6 +32,7 @@ from homeassistant.helpers.update_coordinator import (
     UpdateFailed,
 )
 from pypetwalk import PyPetWALK
+from pypetwalk.aws import Event
 from pypetwalk.const import EVENT_DIRECTION_IN, EVENT_DIRECTION_OUT
 from pypetwalk.exceptions import (
     PyPetWALKClientConnectionError,
@@ -82,6 +84,11 @@ async def async_setup_entry(
     entities = []
     if len(pets) > 0:
         for pet in pets:
+            if pet.species and pet.name:
+                entity_id = f"pet_{pet.species.lower()}_{pet.name.lower()}"
+            else:
+                entity_id = f"pet_{uuid.uuid4()}"
+
             entities.append(
                 PetDeviceTracker(
                     api,
@@ -90,7 +97,7 @@ async def async_setup_entry(
                     species=pet.species,
                     device_name=device_name,
                     entity_name=pet.name,
-                    entity_id=f"pet_{pet.species.lower()}_{pet.name.lower()}",
+                    entity_id=entity_id,
                 )
             )
 
@@ -99,16 +106,16 @@ async def async_setup_entry(
         add_entities(entities, True)
 
 
-class DeviceTrackerCoordinator(DataUpdateCoordinator):
+class DeviceTrackerCoordinator(DataUpdateCoordinator):  # type: ignore[misc]
     """Base Class for Coordinator."""
 
-    def __init__(self, hass, api, device_id):
+    def __init__(self, hass: HomeAssistant, api: PyPetWALK, device_id: int) -> None:
         """Initialize Coordinator."""
         super().__init__(hass, _LOGGER, name="PetWALK", update_interval=UPDATE_INTERVAL)
         self._api = api
         self._device_id = device_id
 
-    async def _async_update_data(self):
+    async def _async_update_data(self) -> dict[str, Event]:
         """Fetch data from API."""
         try:
             async with asyncio.timeout(10):
@@ -119,32 +126,31 @@ class DeviceTrackerCoordinator(DataUpdateCoordinator):
             raise UpdateFailed("Error communication with API") from err
 
 
-class PetDeviceTracker(CoordinatorEntity, TrackerEntity):
+class PetDeviceTracker(CoordinatorEntity, TrackerEntity):  # type: ignore[misc]
     """Pet Device Tracker Entity."""
 
     _attr_available = False
+    _state: str = STATE_NOT_HOME
 
     def __init__(
         self,
         api: PyPetWALK,
         coordinator: DeviceTrackerCoordinator,
         pet_id: str,
-        species: str,
+        species: str | None,
         device_name: str,
-        entity_name: str,
+        entity_name: str | None,
         entity_id: str,
     ):
         """Initialize the Device Tracker."""
         super().__init__(coordinator)
 
         self._api = api
-        self._state = STATE_NOT_HOME
         self._pet_id = pet_id
         self._species = species
         self._device_name = device_name
         self._name = entity_name
         self._entity_id = entity_id
-        self._lastCall = datetime.fromtimestamp(0)
         self._attr_extra_state_attributes = {"last_update": None}
 
     @property
@@ -153,7 +159,7 @@ class PetDeviceTracker(CoordinatorEntity, TrackerEntity):
         return f"petwalk_{self._device_name}_{self._entity_id}"
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Return the name of the entity."""
         return f"PetWALK {self._device_name} {self._name}"
 
@@ -169,6 +175,9 @@ class PetDeviceTracker(CoordinatorEntity, TrackerEntity):
     @property
     def icon(self) -> str | None:
         """Return the icon of the device."""
+        if not self._species:
+            return "mdi:paw"
+
         match self._species.lower():
             case "cat":
                 return "mdi:cat"
@@ -193,11 +202,11 @@ class PetDeviceTracker(CoordinatorEntity, TrackerEntity):
         return SourceType.ROUTER
 
     @property
-    def location_name(self) -> str | None:
+    def location_name(self) -> str:
         """Returns the current state."""
         return self._state
 
-    @callback
+    @callback  # type: ignore[misc]
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
         data = self.coordinator.data
