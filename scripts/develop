@@ -4,6 +4,10 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+# Make sure needed packages are installed
+apt-get update
+apt-get -y install libpcap-dev ffmpeg
+
 # Create config dir if not present
 if [[ ! -d "${PWD}/config" ]]; then
     mkdir -p "${PWD}/config"
