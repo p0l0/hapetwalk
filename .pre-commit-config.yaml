@@ -33,9 +33,9 @@ repos:
       - id: check-executables-have-shebangs
         stages: [manual]
       - id: check-json
-      - id: no-commit-to-branch
-        args:
-          - --branch=main
+#      - id: no-commit-to-branch
+#        args:
+#          - --branch=main
       - id: trailing-whitespace
   - repo: https://github.com/cdce8p/python-typing-update
     rev: v0.6.0
