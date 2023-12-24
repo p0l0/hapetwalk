@@ -42,7 +42,7 @@ import voluptuous as vol
 
 from .const import DOMAIN
 
-UPDATE_INTERVAL = timedelta(seconds=120)
+UPDATE_INTERVAL = timedelta(seconds=30)
 
 _LOGGER = logging.getLogger(__name__)
 
