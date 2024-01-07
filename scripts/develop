@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 # Make sure needed packages are installed
 apt-get update
-apt-get -y install libpcap-dev ffmpeg
+apt-get -y install libpcap-dev ffmpeg ccze
 
 # Create config dir if not present
 if [[ ! -d "${PWD}/config" ]]; then
@@ -21,4 +21,4 @@ fi
 export PYTHONPATH="${PYTHONPATH}:${PWD}/custom_components"
 
 # Start Home Assistant
-hass --config "${PWD}/config" --debug
+hass --config "${PWD}/config" --debug 2>&1 | ccze -A
