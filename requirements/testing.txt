@@ -1,5 +1,4 @@
 -r development.txt
-black==23.12.0
 flake8==6.1.0
 flake8-isort==6.1.1
 pydocstyle==6.3.0
@@ -11,4 +10,9 @@ pytest==7.4.3
 pytest-cov==4.1.0
 pytest-aiohttp==1.0.5
 pytest-asyncio==0.23.2
-pypetwalk==1.0.0
+codespell==2.2.2
+ruff==0.1.8
+yamllint==1.32.0
+pydantic==1.10.12
+pylint-per-file-ignores==1.2.1
+pypetwalk==1.1.0

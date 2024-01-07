@@ -5,7 +5,8 @@
         "data": {
           "ip_address": "IP Address",
           "username": "[%key:common::config_flow::data::username%]",
-          "password": "[%key:common::config_flow::data::password%]"
+          "password": "[%key:common::config_flow::data::password%]",
+          "include_all_events": "Include all Pet events"
         }
       }
     },
@@ -17,6 +18,18 @@
     },
     "abort": {
       "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "ip_address": "IP Address",
+          "username": "[%key:common::config_flow::data::username%]",
+          "password": "[%key:common::config_flow::data::password%]",
+          "include_all_events": "Include all Pet events"
+        }
+      }
     }
   }
 }

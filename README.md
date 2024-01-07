@@ -16,16 +16,22 @@ Custom Component to integrate PetWALK Door into [Home Assistant](https://www.hom
 
 **This integration will set up the following platforms.**
 
-Platform | Description
--- | --
-`switch.device_name_brightness_sensor` | Switch to enable/disable the Brightness Sensor
-`switch.device_name_door` | Switch to turn open and close the Door
-`switch.device_name_motion_in` | Switch to enable/disable Motion IN
-`switch.device_name_motion_out` | Switch to enable/disable Motion OUT
-`switch.device_name_rfid` | Switch to enable/disable the RFID Feature
-`switch.device_name_system` | Switch to turn on and off the System
-`switch.device_name_time` | Switch to enable/disable the Time Schedule
-`device_tracker.device_name_pet_name` | For each Pet, one Device Tracker entity is created, showing if Pet is at Home or not.
+| Platform                                  | Description                                                                           |
+|-------------------------------------------|---------------------------------------------------------------------------------------|
+| `switch.<device_name>_brightness_sensor`  | Switch to enable/disable the Brightness Sensor                                        |
+| `switch.<device_name>_motion_in`          | Switch to enable/disable Motion IN                                                    |
+| `switch.<device_name>_motion_out`         | Switch to enable/disable Motion OUT                                                   |
+| `switch.<device_name>_rfid`               | Switch to enable/disable the RFID Feature                                             |
+| `switch.<device_name>_system`             | Switch to turn on and off the System                                                  |
+| `switch.<device_name>_time`               | Switch to enable/disable the Time Schedule                                            |
+| `cover.<device_name>_door`                | Open and close the Door                                                               |
+| `device_tracker.<device_name>_<pet_name>` | For each Pet, one Device Tracker entity is created, showing if Pet is at Home or not. |
+
+> If you only have rfid activated for entry, you can activate the option '*Include all Pet events' which will provide following entities:
+
+| Platform                                     | Description                                           |
+|----------------------------------------------|-------------------------------------------------------|
+| `sensor.<device_name>_<pet_name>_last_event` | Exposes the timestamp for the last event for each Pet |
 
 # Installation
 ## HACS (Recommended)
@@ -48,7 +54,7 @@ https://github.com/p0l0/hapetwalk/
 ## Through the interface
 1. Navigate to `Settings > Devices & Services` and then click `Add Integration`
 2. Search for `Petwalk`
-4. Enter your credentials and the IP of the Petwalk.control device
+4. Enter your credentials and the IP of the PetWALK.control device
 
 # Legal notice
 This is a personal project and isn't in any way affiliated with, sponsored or endorsed by [PetWALK](https://www.petwalk.at/).

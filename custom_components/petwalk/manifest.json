@@ -1,9 +1,7 @@
 {
   "domain": "petwalk",
   "name": "PetWALK",
-  "codeowners": [
-    "@p0l0"
-  ],
+  "codeowners": ["@p0l0"],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/p0l0/hapetwalk",
@@ -11,10 +9,8 @@
   "integration_type": "device",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/p0l0/hapetwalk/issues",
-  "requirements": [
-    "pypetwalk==1.0.0"
-  ],
+  "requirements": ["pypetwalk==1.1.0"],
   "ssdp": [],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "zeroconf": []
 }
