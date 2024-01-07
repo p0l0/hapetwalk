@@ -6,7 +6,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub release](https://img.shields.io/github/release/p0l0/hapetwalk)](https://github.com/p0l0/hapetwalk/releases)
-![Build Pipeline](https://img.shields.io/github/workflow/status/p0l0/hapetwalk/validate)
+![Build Pipeline](https://img.shields.io/github/actions/workflow/status/p0l0/hapetwalk/validate.yaml)
 ![License](https://img.shields.io/github/license/p0l0/hapetwalk)
 
 ![Project maintenance](https://img.shields.io/badge/maintainer-%40p0l0-blue.svg)
