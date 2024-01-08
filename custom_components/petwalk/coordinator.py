@@ -144,7 +144,9 @@ class PetwalkCoordinator(DataUpdateCoordinator):
         """Fetch data from API."""
         try:
             async with asyncio.timeout(10):
-                data = self.data = {}  # type: ignore[var-annotated]
+                data = self.data
+                if data is None:
+                    data = {}
                 _LOGGER.debug("Fetching local API Data")
                 data[COORDINATOR_KEY_API_DATA] = await self._api.get_api_data()
 
@@ -155,7 +157,7 @@ class PetwalkCoordinator(DataUpdateCoordinator):
                     _LOGGER.debug("Fetching Timeline Data from API")
                     data[COORDINATOR_KEY_PET_STATUS] = await self._api.get_pet_status(
                         self.device_id
-                    )  # type: ignore[assignment]
+                    )
                     self.last_update_pet_status = utcnow()
 
                 return data
