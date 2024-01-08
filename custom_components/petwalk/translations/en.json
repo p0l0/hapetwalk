@@ -14,7 +14,17 @@
                 "data": {
                     "ip_address": "IP Address",
                     "password": "Password",
-                    "username": "Username"
+                    "username": "Username",
+                    "include_all_events": "Include all Door events"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "include_all_events": "Include all Door events"
                 }
             }
         }

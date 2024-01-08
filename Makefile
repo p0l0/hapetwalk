@@ -22,8 +22,5 @@ test_setup:
 pre-commit: test_setup
 	@pre-commit run --all-files
 
-pylint: test_setup
-	@pylint --jobs=0 custom_components/petwalk
-
-lint: pre-commit pylint
+lint: pre-commit
 

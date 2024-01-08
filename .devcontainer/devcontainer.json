@@ -1,9 +1,7 @@
 {
   "name": "hapetwalk",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  "appPort": [
-    "8123:8123"
-  ],
+  "appPort": ["8123:8123"],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,9 +15,7 @@
       ],
       "settings": {
         "python.pythonPath": "/usr/local/bin/python",
-        "python.testing.pytestArgs": [
-          "--no-cov"
-        ],
+        "python.testing.pytestArgs": ["--no-cov"],
         "editor.formatOnPaste": false,
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
