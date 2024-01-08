@@ -15,7 +15,7 @@
                     "ip_address": "IP Address",
                     "password": "Password",
                     "username": "Username",
-                    "include_all_events": "Include all Pet events"
+                    "include_all_events": "Include all Door events"
                 }
             }
         }
@@ -24,7 +24,7 @@
         "step": {
             "init": {
                 "data": {
-                    "include_all_events": "Include all Pet events"
+                    "include_all_events": "Include all Door events"
                 }
             }
         }

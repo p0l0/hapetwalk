@@ -139,9 +139,6 @@ class PetwalkCoordinator(DataUpdateCoordinator):
     async def set_state(self, key: str, value: bool) -> None:
         """Set the state for given key."""
         await self._api.set_state(key, value)
-        await asyncio.sleep(
-            1
-        )  # Local API is slow, so we need to wait before retrieving current status
 
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from API."""
