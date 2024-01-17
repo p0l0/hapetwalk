@@ -27,7 +27,7 @@ Custom Component to integrate PetWALK Door into [Home Assistant](https://www.hom
 | `cover.<device_name>_door`                | Open and close the Door                                                               |
 | `device_tracker.<device_name>_<pet_name>` | For each Pet, one Device Tracker entity is created, showing if Pet is at Home or not. |
 
-> If you only have rfid activated for entry, you can activate the option '*Include all Pet events' which will provide following entities:
+> If you only have rfid activated for entry, you can activate the option '*Include all Door events' which will provide following entities:
 
 | Platform                                     | Description                                           |
 |----------------------------------------------|-------------------------------------------------------|
