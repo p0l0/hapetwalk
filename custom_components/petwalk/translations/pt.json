@@ -1,0 +1,32 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Device is already configured"
+        },
+        "error": {
+            "cannot_connect": "Failed to connect",
+            "cannot_connect_timeout": "Timeout trying to connect",
+            "invalid_auth": "Invalid authentication",
+            "unknown": "Unexpected error"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "ip_address": "IP Address",
+                    "password": "Password",
+                    "username": "Username",
+                    "include_all_events": "Include all Door events"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "include_all_events": "Include all Door events"
+                }
+            }
+        }
+    }
+}
