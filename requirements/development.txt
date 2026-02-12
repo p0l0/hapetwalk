@@ -1,1 +1,3 @@
 homeassistant>=2023.12.0
+cryptography>=46.0.5 # not directly required, pinned by Snyk to avoid a vulnerability
+pillow>=12.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
