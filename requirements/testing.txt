@@ -10,7 +10,7 @@ pytest==8.3.3
 pytest-cov==7.1.0
 pytest-aiohttp==1.0.5
 pytest-asyncio==0.24.0
-codespell==2.3.0
+codespell==2.4.2
 ruff==0.15.8
 yamllint==1.35.1
 pydantic==2.12.5
